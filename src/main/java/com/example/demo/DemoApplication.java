@@ -47,7 +47,7 @@ public class DemoApplication {
 
     private static void getUsingToken(){
         RestTemplate restTemplate = new RestTemplate();
-        String token = "5eb62a74abe9ea9e938d19826c95ecc688a63387";
+        String token = "4f1b28b45eaf6d94ff0df70bdae2c286413828";
 	}
 
 
@@ -56,7 +56,7 @@ public class DemoApplication {
         return (String... args) -> {
 
 
-            String token = "5eb62a74abe9ea9e938d19826c95ecc688a63387";
+            String token = "4f1b28b45eaf6d94ff0df70bdae2c286413828";
 
             ArrayList<String> userList = new ArrayList<>();
             userList.add("AbezerZergaw");
