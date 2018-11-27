@@ -41,9 +41,16 @@
         </div>
     </div>
     <ul class="w3-ul w3-hoverable w3-large">
-        <a th:href="@{/repopage}">List of repos of this user</a>
+
+        <div  th:each="repo : ${repos}">
+            <strong><a th:href="@{/repoDetail/{name}(name=${repo.name})}">[[${repo.name}]]</a></strong>
+        </div>
 
     </ul>
 </div>
 </body>
 </html>
+
+<!--
+<a th:href="@{/repopage}">List of repos of this user</a>
+-->

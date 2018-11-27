@@ -29,18 +29,18 @@ public class MainController {
         // model.addAttribute("user",userRepository.findById(id));
 //user's count
         model.addAttribute("repo",repoRepository.findByName(name) );
-
+        model.addAttribute("repos",repoRepository.findAll());
         return "userpage";
     }
 
 
-    @RequestMapping("/repopage")
-    public String repoPage(Model model /*,String login*/) {
+    /*@RequestMapping("/repopage")
+    public String repoPage(Model model *//*,String login*//*) {
         model.addAttribute("repos",repoRepository.findAll());
         //model.addAttribute("counter",userRepository.countByLogin(login));
 //user's count
         return "repopage";
-    }
+    }*/
 
     @RequestMapping("/repoDetail/{name}")
     public String showDetail(@PathVariable("name") String name, Model model) {
