@@ -59,7 +59,7 @@ public class MainController {
     @RequestMapping("/repoDetail/{name}")
     public String reposDetail(@PathVariable("name") String name, Model model, String login) {
 
-        String token = "15705d0f926a9d483c4c01018c8e7669f5a91b77";
+        String token = "5eb62a74abe9ea9e938d19826c95ecc688a63387";
 
         User user = restTemplate.getForObject("https://api.github.com/users/bilu-Blen?access_token=" + token, User.class);
 

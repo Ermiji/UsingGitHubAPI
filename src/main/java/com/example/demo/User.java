@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.net.URI;
 import java.net.URL;
 
 @Entity
 @JsonIgnoreProperties
+@Table(name="usertable")
 public class User {
     @Id
     private long id;

@@ -17,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.net.URLEncoder.encode;
@@ -46,7 +47,7 @@ public class DemoApplication {
 
     private static void getUsingToken(){
         RestTemplate restTemplate = new RestTemplate();
-        String token = "15705d0f926a9d483c4c01018c8e7669f5a91b77";
+        String token = "5eb62a74abe9ea9e938d19826c95ecc688a63387";
 	}
 
 
@@ -55,21 +56,21 @@ public class DemoApplication {
         return (String... args) -> {
 
 
-            String token = "15705d0f926a9d483c4c01018c8e7669f5a91b77";
+            String token = "5eb62a74abe9ea9e938d19826c95ecc688a63387";
+
+            ArrayList<String> userList = new ArrayList<>();
+            userList.add("AbezerZergaw");
+            userList.add("aoa4eva");
+            userList.add("bilu-Blen");
 
             User user = restTemplate.getForObject("https://api.github.com/users/bilu-Blen?access_token="+token,  User.class);
 
             log.info(user.toString());
             user.setRepos_url(user.getRepos_url());
             userRepository.save(user);
+            user = restTemplate.getForObject("https://api.github.com/users/" + userList.get(0)+ "?access_token=" + token, User.class);
 
-
- /*These work to get  the number of followers on following
-       //following
-        System.out.println(user.getFollowing());
-        //followers
-        System.out.println(user.getFollowers());*/
-
+            userRepository.save(user);
             //since it is an array what is returned use this method
             ResponseEntity<List<Repo>> repoResponse =
                     restTemplate.exchange(user.getRepos_url()+"?access_token="+token,
