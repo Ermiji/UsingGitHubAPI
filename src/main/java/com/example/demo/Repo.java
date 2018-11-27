@@ -1,19 +1,26 @@
 package com.example.demo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Set;
 
+@Entity
 public class Repo {
+    @Id
     private long id;
     private String name;
-    private User user;
+//    private User user;
     private String pulls_url;
     private String collaborators_url;
     private long forks;
     private long traffic_views_uniques;
     private long traffic_clones_uniques;
-
-    private Set<String> languages;
-    private Set<String> pulls;
+//    @Column(name="languages")
+//    private Set<String> languages;
+//
+//    @Column(name="pulls")
+//    private Set<String> pulls;
 
 
     public String getCollaborators_url() {
@@ -53,13 +60,13 @@ public class Repo {
         this.name = name;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
 
 
@@ -79,21 +86,21 @@ public class Repo {
         this.traffic_clones_uniques = traffic_clones_uniques;
     }
 
-    public Set<String> getLanguages() {
-        return languages;
-    }
-
-    public void setLanguages(Set<String> languages) {
-        this.languages = languages;
-    }
-
-    public Set<String> getPulls() {
-        return pulls;
-    }
-
-    public void setPulls(Set<String> pulls) {
-        this.pulls = pulls;
-    }
+//    public Set<String> getLanguages() {
+//        return languages;
+//    }
+//
+//    public void setLanguages(Set<String> languages) {
+//        this.languages = languages;
+//    }
+//
+//    public Set<String> getPulls() {
+//        return pulls;
+//    }
+//
+//    public void setPulls(Set<String> pulls) {
+//        this.pulls = pulls;
+//    }
 
     @Override
     public String toString(){

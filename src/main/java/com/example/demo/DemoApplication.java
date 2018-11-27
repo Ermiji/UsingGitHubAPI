@@ -4,6 +4,7 @@ import javafx.application.Application;
 import org.aspectj.weaver.ast.Or;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
@@ -19,10 +21,17 @@ import java.util.List;
 
 import static java.net.URLEncoder.encode;
 
+
 @SpringBootApplication
 public class DemoApplication {
 
-	private  static final Logger log = LoggerFactory.getLogger(Application.class);
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    RepoRepository repoRepository;
+
+	private  static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class);
     }
@@ -41,12 +50,16 @@ public class DemoApplication {
     @Bean
     public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
         return (String... args) -> {
+
+
             String token = "yourtokenhere";
 
             User user = restTemplate.getForObject("https://api.github.com/users/bilu-Blen?access_token="+token,  User.class);
 
             log.info(user.toString());
             user.setRepos_url(user.getRepos_url());
+            userRepository.save(user);
+
 
  /*These work to get  the number of followers on following
        //following
@@ -63,6 +76,8 @@ public class DemoApplication {
 
             int count= 0;
             for (Repo repo1 : repos) {
+                repoRepository.save(repo1);
+
 /*these get methods can be used on the repo to get the repo name, and forks
                log.info(repo1.getName());
                 log.info(repo1.getPulls_url());

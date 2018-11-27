@@ -2,14 +2,18 @@ package com.example.demo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.net.URI;
 import java.net.URL;
 
+@Entity
 @JsonIgnoreProperties
 public class User {
+    @Id
+    private long id;
 
     private String login;
-    private long id;
     private String repos_url;
     private int followers;
     private int following;
