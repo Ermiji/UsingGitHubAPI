@@ -56,7 +56,7 @@ public class MainController {
     @RequestMapping("/repoDetail/{name}")
     public String reposDetail(@PathVariable("name") String name, Model model, String login) {
 
-        String token = "12d262b7205bc3aa75ea3d87b3d4750c979e7026";
+        String token = "yourtokenhere";
 
         User user = restTemplate.getForObject("https://api.github.com/users/bilu-Blen?access_token=" + token, User.class);
 
@@ -90,9 +90,18 @@ public class MainController {
                 System.out.println("The collaborator/s is/are " + collaborator.getLogin());
                 collaboratorsRepository.save(collaborator);
             }
+       //getting unique cloners
+        Clones clone = restTemplate.getForObject("https://api.github.com/repos/bilu-Blen/UsingGitHubAPI/traffic/clones?access_token=" + token, Clones.class);
+        System.out.println("This is the unique visitor " + clone.getUniques());
+
+        //getting unique views
+        Views view = restTemplate.getForObject("https://api.github.com/repos/bilu-Blen/UsingGitHubAPI/traffic/clones?access_token=" + token, Views.class);
 
 
 //        }
+        model.addAttribute("clone", clone);
+        model.addAttribute("view", view);
+
         model.addAttribute("collaboratorsList", collaboratorsList);
         model.addAttribute("repo", repoRepository.findByName(name));
         return "repodetails";

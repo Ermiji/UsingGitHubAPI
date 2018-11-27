@@ -42,7 +42,16 @@
                 <h6>collaborator</h6>
                 <div th:each="collaborator : ${collaboratorsList}">
                     <p >[[${collaborator.login}]]</p>
+
                 </div>
+                <h6>Unique cloners</h6>
+
+                <p >[[${clone.uniques}]]</p>
+                <h6> Unique Viewers</h6>
+
+                <p >[[${view.uniques}]]</p>
+
+
             </ul>
 
 
