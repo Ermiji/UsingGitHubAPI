@@ -42,4 +42,11 @@ public class MainController {
         return "repopage";
     }
 
+    @RequestMapping("/repoDetail/{name}")
+    public String showDetail(@PathVariable("name") String name, Model model) {
+        model.addAttribute("repo",repoRepository.findByName(name) );
+
+        return "repodetails";
+    }
+
 }

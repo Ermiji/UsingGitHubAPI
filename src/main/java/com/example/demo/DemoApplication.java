@@ -43,7 +43,7 @@ public class DemoApplication {
 
     private static void getUsingToken(){
         RestTemplate restTemplate = new RestTemplate();
-        String token = "yourtokenhere";
+        String token = "a680a72052fa42af62be75007db306db038267dd";
 	}
 
 
@@ -52,7 +52,7 @@ public class DemoApplication {
         return (String... args) -> {
 
 
-            String token = "yourtokenhere";
+            String token = "a680a72052fa42af62be75007db306db038267dd";
 
             User user = restTemplate.getForObject("https://api.github.com/users/bilu-Blen?access_token="+token,  User.class);
 

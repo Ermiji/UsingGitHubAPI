@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:insert="base :: header"></th:block>
+    <style>
+        .jumbotron {
+            background-color: gainsboro;
+        }
+        .nav{
+            color: black;
+            border-bottom-style: outset;
+            text-align: center;
+            padding: 0px;
+        }
+        .container{
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="base :: navlinks"></div>
+<div class="jumbotron text-center">
+    <h1>JBCSep2018</h1>
+</div>
+<div class="container">
+
+    <ul class="nav">
+        <li><h3>Members List <span class="w3-badge w3-small w3-gray w3-padding">17</span></h3></li>
+        <!--<li><h3>&nbsp;&nbsp;&nbsp;Followers </h3></li>-->
+        <!--<li><h3>&nbsp;&nbsp;&nbsp;Following </h3></li>-->
+    </ul><br>
+    <ul th:each="user : ${users}">
+        <a th:href="@{/userDetail/{login}(login=${user.login})}">[[${user.login}]]</a>
+
+    </ul>
+
+</div>
+</body>
+</html>
