@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import javafx.application.Application;
-import org.aspectj.weaver.ast.Or;
+//import javafx.application.Application;
+//import org.aspectj.weaver.ast.Or;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
