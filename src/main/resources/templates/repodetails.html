@@ -36,11 +36,21 @@
             <ul class="nav">
                 <li><h4>Repository details</h4></li>
                 <li th:inline="text"><h4>Forks<span class="w3-badge w3-small w3-gray w3-padding">[[${repo.forks}]]</span></h4></li>
-
+                <li th:inline="text"><p>Languages<span class="w3-badge w3-small w3-gray w3-padding">[[${repo.language}]]</span></p></li>
             </ul>
+            <ul class="w3-ul w3-hoverable w3-large">
+                <h6>collaborator</h6>
+                <div th:each="collaborator : ${collaboratorsList}">
+                    <p >[[${collaborator.login}]]</p>
+                </div>
+            </ul>
+
+
+
         </div>
     </div>
 
 </div>
 </body>
 </html>
+

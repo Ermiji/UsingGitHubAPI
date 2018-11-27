@@ -14,6 +14,17 @@ public class Repo {
     private String pulls_url;
     private String collaborators_url;
     private long forks;
+
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    private String language;
     private long traffic_views_uniques;
     private long traffic_clones_uniques;
 //    @Column(name="languages")

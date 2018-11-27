@@ -31,6 +31,9 @@ public class DemoApplication {
     @Autowired
     RepoRepository repoRepository;
 
+    @Autowired
+    CollaboratorsRepository collaboratorsRepository;
+
 	private  static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class);
@@ -43,7 +46,7 @@ public class DemoApplication {
 
     private static void getUsingToken(){
         RestTemplate restTemplate = new RestTemplate();
-        String token = "a680a72052fa42af62be75007db306db038267dd";
+        String token = "yourtokenhere";
 	}
 
 
@@ -52,7 +55,7 @@ public class DemoApplication {
         return (String... args) -> {
 
 
-            String token = "a680a72052fa42af62be75007db306db038267dd";
+            String token = "yourtokenhere";
 
             User user = restTemplate.getForObject("https://api.github.com/users/bilu-Blen?access_token="+token,  User.class);
 
@@ -117,6 +120,8 @@ public class DemoApplication {
 
                 for(Collaborators collaborator : collaboratorsList){
                     System.out.println("The collaborator/s is/are " + collaborator.getLogin());
+                    collaboratorsRepository.save(collaborator);
+
 
                 }
             }
