@@ -72,6 +72,7 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.4-1201-jdbc4</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -79,6 +80,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
