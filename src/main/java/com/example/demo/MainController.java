@@ -16,6 +16,9 @@ import java.util.List;
 public class MainController {
 
     @Autowired
+    PullRepository pullRepository;
+
+    @Autowired
     UserRepository userRepository;
 
     @Autowired
@@ -56,7 +59,7 @@ public class MainController {
     @RequestMapping("/repoDetail/{name}")
     public String reposDetail(@PathVariable("name") String name, Model model, String login) {
 
-        String token = "yourtokenhere";
+        String token = "15705d0f926a9d483c4c01018c8e7669f5a91b77";
 
         User user = restTemplate.getForObject("https://api.github.com/users/bilu-Blen?access_token=" + token, User.class);
 
@@ -114,6 +117,31 @@ public class MainController {
             System.out.println("The content's of this repo are " + content.getName());
 //            collaboratorsRepository.save(content);
         }
+
+        String pulls = repoRepository.findByName(name).getPulls_url();
+        //taking out the last part https://api.github.com/repos/bilu-Blen/Arrays/pulls{/number}
+        //String str = repo1.getPulls_url();
+        int index1 = pulls.lastIndexOf('{');
+        pulls = pulls.substring(0, index1);
+
+        //getting pull request numbers
+        ResponseEntity<List<Pull>> pullResponse =
+                restTemplate.exchange(pulls + "?access_token=" + token,
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Pull>>() {
+                        });
+        List<Pull> pullsList = pullResponse.getBody();
+        int count = 0;
+//number of pulls
+        Pull pull = new Pull();
+        for (Pull pull1 : pullsList) {
+            count = count + 1;
+            pullRepository.save(pull1);
+        }
+
+        pull.setCounter(count);
+        System.out.println(pull.getCounter());
+        //  model.addAttribute("pull",pullRepository.findByTitle(title));
+        model.addAttribute("pull", pull);
 //        }
 
         model.addAttribute("clone", clone);
