@@ -14,6 +14,7 @@ public class Repo {
     private String pulls_url;
     private String collaborators_url;
     private long forks;
+    private String url;
 
 
     public String getLanguage() {
@@ -121,5 +122,13 @@ public class Repo {
                 "forks=" + forks+
                 "collaborators_url" + collaborators_url+
                 "}";
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

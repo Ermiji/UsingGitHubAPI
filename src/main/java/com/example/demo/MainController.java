@@ -56,7 +56,7 @@ public class MainController {
     @RequestMapping("/repoDetail/{name}")
     public String reposDetail(@PathVariable("name") String name, Model model, String login) {
 
-        String token = "yourtokenhere";
+        String token = "a0d6a77c4e1f8a314e4a8ccbceec7961ee307ba8";
 
         User user = restTemplate.getForObject("https://api.github.com/users/bilu-Blen?access_token=" + token, User.class);
 
@@ -91,19 +91,37 @@ public class MainController {
                 collaboratorsRepository.save(collaborator);
             }
        //getting unique cloners
+
         Clones clone = restTemplate.getForObject("https://api.github.com/repos/bilu-Blen/UsingGitHubAPI/traffic/clones?access_token=" + token, Clones.class);
         System.out.println("This is the unique visitor " + clone.getUniques());
+        System.out.println("This is the repo url " + user.getRepos_url());
+        System.out.println(repoRepository.findByName(name).getUrl()+"/contents?access_token=" + token);
+
 
         //getting unique views
         Views view = restTemplate.getForObject("https://api.github.com/repos/bilu-Blen/UsingGitHubAPI/traffic/clones?access_token=" + token, Views.class);
 
+        //lets get the content
+        ResponseEntity<List<Contents>> contentresponse =
+                restTemplate.exchange(repoRepository.findByName(name).getUrl()+"/contents?access_token=" + token,
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Contents>>() {
+                        });
+        System.out.println(repoRepository.findByName(name).getUrl()+"/contents?access_token=" + token);
 
+        List<Contents> contentsList = contentresponse.getBody();
+
+        for (Contents content : contentsList) {
+            System.out.println("The content's of this repo are " + content.getName());
+//            collaboratorsRepository.save(content);
+        }
 //        }
+
         model.addAttribute("clone", clone);
         model.addAttribute("view", view);
 
         model.addAttribute("collaboratorsList", collaboratorsList);
         model.addAttribute("repo", repoRepository.findByName(name));
+        model.addAttribute("contentsList", contentsList);
         return "repodetails";
     }
 

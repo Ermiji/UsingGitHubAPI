@@ -50,7 +50,10 @@
                 <h6> Unique Viewers</h6>
 
                 <p >[[${view.uniques}]]</p>
+                <div th:each="content : ${contentsList}">
+                    <p >[[${content.name}]]</p>
 
+                </div>
 
             </ul>
 
